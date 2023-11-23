@@ -1,7 +1,7 @@
 import twitterIcon from "./assets/twitter-icon.svg";
 import tumblrIcon from "./assets/tumblr-icon.png";
-import "./App.css";
 import { useEffect, useState } from "react";
+import "./App.css";
 
 export const colors = [
   "#faebd7",
@@ -68,10 +68,18 @@ function App() {
       alert(error);
     }
   };
+
+  const fetchNewQuote = () => {
+    startFetchQuote();
+    successFetchQuote();
+    getRandomColor();
+  };
   useEffect(() => {
     startFetchQuote();
     successFetchQuote();
     getRandomColor();
+
+    //eslint-disable-next-line
   }, []);
   const singleQuote = quote && quote[0];
   return (
@@ -100,12 +108,17 @@ function App() {
             <a
               href="twitter.com/intent/tweet"
               id="trumble-quote"
+              target="_blank"
               style={{ backgroundColor: color }}
             >
               <img src={tumblrIcon} alt="" />
             </a>
           </div>
-          <button id="new-quote" style={{ backgroundColor: color }}>
+          <button
+            id="new-quote"
+            style={{ backgroundColor: color }}
+            onClick={fetchNewQuote}
+          >
             New Quote
           </button>
         </div>
